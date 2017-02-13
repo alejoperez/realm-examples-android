@@ -2,22 +2,34 @@ package com.realm.examples.models;
 
 import java.util.Date;
 
+import io.realm.RealmList;
 import io.realm.RealmObject;
-import io.realm.annotations.Ignore;
 import io.realm.annotations.PrimaryKey;
-import io.realm.annotations.Required;
 
 public class User extends RealmObject {
 
     @PrimaryKey
     private String userId;
-    @Ignore
-    private String sessionId;
-    @Required
     private String name;
-    private int age;
+    private RealmList<Restaurant> favoriteRestaurant;
+    private double age;
     private Date birthday;
-    private Restaurant favoriteRestaurant;
+
+    public Date getBirthday() {
+        return birthday;
+    }
+
+    public void setBirthday(Date birthday) {
+        this.birthday = birthday;
+    }
+
+    public double getAge() {
+        return age;
+    }
+
+    public void setAge(double age) {
+        this.age = age;
+    }
 
     public String getUserId() {
         return userId;
@@ -25,14 +37,6 @@ public class User extends RealmObject {
 
     public void setUserId(String userId) {
         this.userId = userId;
-    }
-
-    public String getSessionId() {
-        return sessionId;
-    }
-
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
     }
 
     public String getName() {
@@ -43,36 +47,11 @@ public class User extends RealmObject {
         this.name = name;
     }
 
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
-    public Date getBirthday() {
-        return birthday;
-    }
-
-    public void setBirthday(Date birthday) {
-        this.birthday = birthday;
-    }
-
-    public Restaurant getFavoriteRestaurant() {
+    public RealmList<Restaurant> getFavoriteRestaurant() {
         return favoriteRestaurant;
     }
 
-    public void setFavoriteRestaurant(Restaurant favoriteRestaurant) {
+    public void setFavoriteRestaurant(RealmList<Restaurant> favoriteRestaurant) {
         this.favoriteRestaurant = favoriteRestaurant;
-    }
-
-    public boolean isAdult() {
-        return age >= 18;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return super.equals(obj);
     }
 }
